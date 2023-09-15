@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, NavLink, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -13,30 +13,38 @@ import NotFound from "./pages/NotFound";
 import { BookLayout } from "./pages/BookLayout";
 
 function App() {
+  const location = useLocation();
+  console.log(location);
   return (
     <>
-      <h1 className=" font-bold underline text-red-600 flex justify-center ">
+      <p className=" font-bold underline text-red-600 flex justify-center ">
         Simple React Typescript Tailwind Sample
-      </h1>
+      </p>
       <Routes>
         <Route path="/Books" element={<h1>Extra content</h1>} />
       </Routes>
-      <nav>
+      <nav className="flex text-center">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/" state={"aaaa"}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <NavLink to="/about" state={"hi"}>
+              About
+            </NavLink>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
           <li>
-            <Link to="/books">Books</Link>
+            <NavLink end to="/books">
+              Books
+            </NavLink>
           </li>
           <li>
-            <Link to="/books/new">New Book</Link>
+            <NavLink to="/books/new">New Book</NavLink>
           </li>
         </ul>
       </nav>
